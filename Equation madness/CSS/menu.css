@@ -1,0 +1,173 @@
+.menu {
+ 
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+
+    
+
+#container div#figure div {
+	height: 562px;
+	margin: 0 auto;
+	position: relative;
+	width: 960px;
+}
+
+
+#container div#figure div div {
+	height: auto;
+	margin: 0;
+	position: absolute;
+	right: 0;
+	top: 310px;
+	width: 300px;
+	z-index: 2;
+}
+#container div #figure span a:hover {
+	background: url(../images/interface.png) no-repeat 0 -585px;
+	bottom: 0;
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	margin: 0 auto;
+	position: static;
+	top: 0;
+	width: 290px;
+}
+#container div#figure  span a {
+	color: #1f1005;
+	display: block;
+	float: none;
+	font-size: 25px;
+	margin: 0;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px #ffc600;
+	
+
+}
+
+
+
+#container div div #figure span a  {
+	background: url(../images/interface.png) repeat 0 -585px;
+	bottom: 0;
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	margin: 0 auto;
+	position: static;
+	top: 0;
+	width: 290px;
+}
+
+#container div #content h2 {
+	background: url(../images/interface.png) no-repeat 0 -416px;
+	color: darkslateblue;
+	font-size: 25px;
+	font-style: italic;
+	height: 90px;
+	left: 0;
+	line-height: 118px;
+	margin: 0;
+	position: absolute;
+	text-align: center;
+	text-shadow: 0 1px #ffc600;
+	top: -58px;
+	width: 162px;
+	z-index: 3;
+}
+
+
+#welcome {
+	height: 222px;
+	text-align: center;
+}
+#welcome p img {
+	float: left;
+	font-size: 16px;
+	width: 360px;
+	margin: 63px 5px 0;
+	text-align: right;
+}
+#welcome p:first-child {
+	text-align: left;
+}
+
+
+body {
+  background-image: url(../images/bg-soil.jpg) ;
+}
+
+img{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    width: 1350px;
+    height: 600px;
+            
+            border-radius: 20px;
+}
+
+#container{
+        
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    width: 1000px;
+     z-index: 2;
+            opacity: 1;
+            display:block;
+            position:absolute;
+            
+            border-radius: 20px;
+
+}
+
+.controls-text{
+  font-family: sans-serif;
+  text-align: center;
+  color: white;
+}
+
+//
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////
+
+
+#container  div#content {
+	float: left;
+	margin: 0;
+	position: static;
+	width: 650px;
+}
+
+#container  div#content div {
+	background: url(../images/bg-content.png) repeat;
+	border-radius: 15px;
+	height: auto;
+	letter-spacing: 0.05em;
+	margin: 0 0 0 10px;
+	padding: 45px 30px 25px 20px;
+	width: 590px;
+    
+}
+#container  div#content div b{
+   color: darkgoldenrod;
+    font-size:20px;
+}

@@ -1,0 +1,558 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+   
+   
+   
+   
+    <style>
+        
+        body{
+            background-image: url(bg-soil.jpg);
+        }
+        #BgCanvas{
+            z-index: -1;
+            opacity: 1;
+            background-color:white;
+            display:block;
+            position:absolute;
+            
+            border-radius: 20px;
+            
+        }
+        #NumCanvas{
+            z-index: 1;
+            opacity: 1;
+            display:block;
+            position:absolute;
+            
+            border-radius: 20px;
+        }
+        #myCanvas {
+            z-index: 2;
+            opacity: 1;
+            display:block;
+            position:absolute;
+            
+            border-radius: 20px;
+        }
+        
+    </style>
+    <script>
+        var canvas , ctx ,canvasNum,ctxNum ;
+        var opr;
+        var IncX;
+        var selected;
+        var Equation_Result=2;
+        var img;
+        var imageX=500,imageY=450;
+        var imageWidth=50,imageHeight=50;
+        var canvasBG , ctxBg ;
+        var rnd=new Array();
+        var rnd2=new Array();
+        var opr=new Array();
+        var AllRects = new Array();
+        var Numbers=new Array();
+        var size = Randoms(5,10);
+        
+        var score=0;
+        
+        
+        
+        var Numbers1=new Array();
+        Numbers1[0]=new Image();
+        Numbers1[0].src="44.png";
+        Numbers1[1]=new Image();
+        Numbers1[1].src="33.png";
+        Numbers1[2]=new Image();
+        Numbers1[2].src="22.png";
+        Numbers1[3]=new Image();
+        Numbers1[3].src="33.png";
+        Numbers1[4]=new Image();
+        Numbers1[4].src="44.png";
+        
+        
+        
+        
+        /////////////////////Sound
+        
+           (function () {
+  if (typeof game == "undefined"){
+    game = {};
+  }
+})();
+
+        (function(){
+  var Sounds = game.Sounds = {};
+
+  Sounds.music = new Audio("Sounds/dramaticMusic.mp3");
+  Sounds.music.volume = 0.3;
+  Sounds.music.loop = true;
+  Sounds.music.play();
+})();
+
+        
+        
+        
+        
+        
+        
+        
+        function Init(){
+            
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d"); 
+            
+            canvasBG = document.getElementById("BgCanvas");
+            ctxBg = canvasBG.getContext("2d"); 
+            
+            canvasNum = document.getElementById("NumCanvas");
+            ctxNum = canvasNum.getContext("2d"); 
+            
+            img=new Image();
+            img.src = "2.png";
+            img.onload=Draw;
+           document.onkeydown=move;
+            canvas.focus();
+            
+            
+             imgbult=new Image();
+            imgbult.src = "arrow.png";
+            imgbult.onload=DrawBullet;
+           document.onkeydown=move;
+            canvas.focus();
+            
+            for (i = 1; i < size; i++) {
+                
+                Numbers.push(new MovingRect(10, 10, 50));
+            }
+            
+            Numbers.push(new MovingRect(10, 10, 50));
+            window.requestAnimationFrame(DrawNumbers);
+            
+            
+            Design();
+            array_fill();
+            Equation();
+        
+            
+            
+    }
+          
+        
+        function move(event)
+            {
+        //var code= alert(event.keyCode);
+             if(event.keyCode==39)
+                    {
+                        imageX +=10;
+                    }
+                if(event.keyCode==37)
+                    {
+                       imageX -=10;
+                    }
+                if(event.keyCode==32)
+                    {
+                       Shoot();
+                    }
+                
+                 
+                Draw();
+            }
+     
+        
+        
+        
+        
+        
+        
+        
+        ////////////////////////////////hit
+        
+          var bulY=400;
+        var bulx;
+     //   var speedY=5;
+         function DrawBullet()
+        {
+            
+            
+             ctx.clearRect( bulx,  bulY, 100, 100);
+                
+             //    bulx += speedX;
+            //  bulY += speedY;
+             ctx.drawImage(imgbult, bulx, bulY, 4,368);
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          //  ctx.fillStyle="red";
+        //   ctx.clearRect(bulx,bulY,10,10);
+            
+            //calculate new location
+            
+            bulY-=speedY;
+            if (bulY<80 ) {
+                
+                if(bulx > 0 && bulx < 130)
+                {
+                    if(Equation_Result==rnd[0])
+                        {
+                            update();
+                        }
+                    else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                }
+
+                }
+                
+                else if(bulx > 130 && bulx < 130+175)
+                {
+                    if(Equation_Result==rnd[1])
+                        update();
+                    else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                }
+                }
+                else if(bulx > 310 && bulx < 310+175)
+                {
+                    if(Equation_Result==rnd[2])
+                       update();
+                    else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                }
+                }
+                else if(bulx > 490 && bulx < 490+175)
+                {
+                    if(Equation_Result==rnd[3])
+                        update();
+                    else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                }
+                }
+                else if(bulx > 670 && bulx < 670+175)
+                {
+                    if(Equation_Result==rnd[4])
+                        update();
+                    else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                }
+                }
+                else if(bulx > 850 && bulx < 850+175)
+                {
+                    if(Equation_Result==rnd[5])
+                        update();
+                  else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                }
+                }
+                else if(bulx > 1030 && bulx < 1030+175)
+                {
+                    if(Equation_Result==rnd[6])
+                        update();
+                   else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                }
+                }
+                else if(bulx > 1210 )
+                {
+                    if(Equation_Result==rnd[7])
+                        update();
+                  else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                }
+                }
+                else
+                {
+                    if(Equation_Result==rnd[8])
+                        update();
+                  else {
+                    ctx.fillStyle = "burlywood";
+                    ctx.font = "100px Arial";
+                    ctx.fillText("Game Over", 390, 250);
+                       
+                }
+                }
+            }
+            else{
+            //draw new location
+          //  ctx.fillRect(bulx,bulY, 10,10);
+            ctx.drawImage(imgbult, bulx, bulY, 4,368);
+            window.requestAnimationFrame(DrawBullet);
+            }
+            
+        }
+        function update(){
+           
+           score+=1;
+            
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctxBg.clearRect(0,0,canvasBG.width,canvasBG.height);
+            
+            ctxNum.clearRect(0,0,canvasNum.width,canvasNum.height);
+            ctx.clearRect( bulx,bulY, canvas.width,canvas.height);
+            ctx.drawImage(imgbult, bulx, bulY, 4,368);
+            Equation();
+            Design();
+            
+        }
+        function Shoot()
+        {
+            speedY=5;
+            bulx=imageX+12;
+            DrawBullet();
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        var index=0;
+         function MovingRect(startX, startY, rectSize) {
+            this.locX = Randoms(1,1000);
+            this.locY = Randoms(100,300);
+            this.speedX =Randoms(1,5);
+            this.speedY = Randoms(1,5);
+            this.rectSize = rectSize;
+            this.index=Randoms(0,4);
+            
+            
+            this.Draw = function () {
+                ctxNum.clearRect(this.locX, this.locY, 100, 100);
+                
+                this.locX += this.speedX;
+                this.locY += this.speedY;
+                if (this.locX+100 > canvasNum.width || this.locX < 0) {
+                    this.speedX = -this.speedX;
+                }
+                if (this.locY+200 > canvasNum.height || this.locY < 80) {
+                    this.speedY = -this.speedY;
+                }
+                //ctxBg.fillRect(this.locX, this.locY, this.rectSize, this.rectSize);
+                ctxNum.drawImage(Numbers1[this.index],this.locX,this.locY, 100,100);
+                
+            }
+            
+        }
+        
+        function DrawNumbers() {
+            
+            for (i = 0; i < Numbers.length ; i++){
+                Numbers[i].Draw();
+            
+            }
+            
+            window.requestAnimationFrame(DrawNumbers);
+            
+        }
+       
+        function Draw(){
+            
+            ctx.clearRect(0,450,canvas.width,imageHeight);
+            
+            ctx.drawImage(img,imageX,imageY,imageWidth,imageHeight);
+       
+        }
+        function array_fill(){
+             //filling array with unique values
+            for(var i = 0; i < 8; i++)
+            {
+                var add = true;
+                var n = Randoms(-10,50);
+                for(var j = 0; j < 8; j++)
+                {
+                    if(rnd[j] == n)
+                    {
+                        add = false;
+                    }
+                }
+                if(add)
+                {
+                    rnd.push(n)
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            
+        }
+        function Equation(){
+            
+            rnd2[0]=Randoms(-5,20);
+            rnd2[1]=Randoms(-5,20);
+            //numbers design
+            ctx.font ="40px Elephant" ;
+            ctx.fillStyle="black";
+            //print number
+            IncX=canvas.width/3+40;
+            for (var i=0; i <2; i++) 
+            { 
+                ctx.fillText(rnd2[i],IncX,canvas.height-40);
+                IncX+=240;
+            }
+            //choose opertation
+            opr[0]=new Image();
+            opr[0].src ="+.png";
+            opr[1]=new Image();
+            opr[1].src ="-.png";
+            opr[2]=new Image();
+            opr[2].src ="x.png";
+            selected=Randoms(0,2);
+            ctx.drawImage(opr[selected],canvas.width/3+160,canvas.height-80,50,50);
+            
+            switch(selected)
+                {
+                    case 0:
+                        Equation_Result=rnd2[0]+rnd2[1];
+                        break;
+                    case 1:
+                        Equation_Result=rnd2[0]-rnd2[1];
+                        break;
+                    case 2:
+                        Equation_Result=rnd2[0]*rnd2[1];
+                        break;
+                }  
+            
+            
+            
+            //adding result to targets list
+            for(var i=0;i<8;i++)
+            {
+                if(Equation_Result==rnd[i])
+                {
+                    
+                    break;
+                    
+                }
+                else if(i==7){
+                    rnd[i]=Equation_Result;
+                   
+                }
+                else
+                {
+                    continue;
+                    
+                 }
+            }
+            
+            //shuffle array
+            for (var i = rnd.length-1; i > 0; i--) 
+            {
+                
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = rnd[i];
+                rnd[i] = rnd[j];
+                rnd[j] = temp;
+            }
+            
+            //draw targets   
+            target();
+            
+        }
+        function target(){
+           
+            //numbers design
+            ctx.font ="30px Elephant" ;
+            ctx.fillStyle="white";
+            //print number
+            IncX=20;
+            for (var i=0; i <8; i++) 
+            { 
+                ctx.fillText(rnd[i],IncX,50);
+            IncX+=180;
+            }
+        }
+        function Randoms(first,last){
+            
+            
+            var choise=last-first+1;
+            
+            var result= Math.floor(Math.random() * choise) + first;
+            return result;
+        };
+        function Design(){
+           /* 
+            
+            //l5at l ta7t
+            var grd = ctx.createLinearGradient(0,0,800,0);
+            grd.addColorStop(0,"black");
+            grd.addColorStop(1,"gray");
+            
+            // Fill with gradient
+            ctx.fillStyle = grd;
+
+            ctx.fillRect(0,canvas.height-100,canvas.width,15);
+            //3shan l timer kol showaya hanmsa7 7eta
+            var slider_timer= setInterval(function(){ctx.clearRect(0,canvas.height-100,z,15);z+=3;},5);
+            
+            */
+            
+            var xrec=-45;
+            ctxBg.fillStyle="burlywood";
+            for(var i=0;i<8;i++){
+                ctxBg.fillRect(xrec,0,175,80);
+                xrec+=180;
+            }
+            
+            ctxBg.fillStyle="burlywood";
+            ctxBg.fillRect(0,canvasBG.height-85,canvasBG.width,85);
+            ctxBg.font ="400px Elephant" ;
+            ctxBg.fillStyle="#d9d9d9";
+
+            ctxBg.fillText(score,500,450);
+            
+        }
+        //timer slidebar
+       // var z=10;
+        
+    </script>
+    </head>
+    
+<body onload="Init()">
+    <canvas id="BgCanvas" width="1350" height="600" >
+            </canvas>
+    <canvas id="myCanvas" width="1350" height="600" >
+            </canvas>
+    <canvas id="NumCanvas" width="1350" height="600" >
+            </canvas>
+</body>
+</html>

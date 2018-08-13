@@ -1,0 +1,140 @@
+
+   <html>
+  <head>
+    <title>Equation Madness</title>
+    
+    <link rel="stylesheet" type="text/css" href="CSS/menu.css">
+   
+    
+  </head>
+  <body>
+   
+
+    <div id="container">
+      
+        
+        
+         <div class=" menu" style=" position: absolute;
+  left: 11%;
+  top: 10%;">
+        <div id="content" >
+						<h2>Welcome</h2>
+            </div>
+            </div>
+        
+        
+    
+        
+        
+        <div class=" menu" style=" position: absolute;
+  left: 30%;
+  top: 35%;">
+        <div id="content">
+						<h2>Equation</h2>
+            </div>
+        </div>
+        
+        <div class=" menu" style=" position: absolute;
+  left: 46%;
+  top: 35%;">
+        <div id="content" >
+						<h2>Madness</h2>
+            </div>
+            </div>
+
+
+        
+        
+        
+         <div class=" menu" style=" position: absolute;
+  left: 35%;
+  top: 25%;">
+             <div>
+				<div id="figure">
+                   
+                    
+					<span ><a href="#">Think and Play</a></span>
+			</div>
+                    </div>
+		</div>
+        
+        
+        <div class=" menu" style=" position: absolute;
+  left: 55%;
+  top: 25%;">
+             <div>
+				<div id="figure">
+                   
+                    
+					<span ><a href="#"> Enjoy it</a></span>
+			</div>
+                    </div>
+		</div>
+        
+    
+        
+			<div class=" menu" style=" position: absolute;
+  left: 20%;
+  top: 50%;">
+				<div id="figure">
+                   
+                    
+					<span ><a href="index.html">Start Game</a></span>
+			
+                    </div>
+		</div>
+        
+        <div class=" menu" style=" position: absolute;
+  left: 20%;
+  top: 60%;">
+				<div id="figure">
+                   
+                    
+					<span ><a href="#">How To Play</a></span>
+			
+                    </div>
+		</div>
+        
+        <div class=" menu" style=" position: absolute;
+  left: 20%;
+  top: 70%;">
+				<div id="figure">
+                   
+                    
+					<span ><a href="#">Option</a></span>
+			
+                    </div>
+		</div>
+        
+        
+        <div class=" menu" style=" position: absolute;
+  left: 20%;
+  top: 80%;">
+				<div id="figure">
+                   
+                    
+					<span ><a href="#">about</a></span>
+			
+                    </div>
+		</div>
+        
+         <div class=" menu" style=" position: absolute;
+  left: 20%;
+  top: 90%;">
+				<div id="figure">
+                   
+                    
+					<span ><a href="#">Quit</a></span>
+			
+                    </div>
+		</div>
+        
+        
+      <div class="demoVideo">
+        <img src="9.jpg"   />
+      </div>
+    </div>
+  </body>
+
+  
+</html>
